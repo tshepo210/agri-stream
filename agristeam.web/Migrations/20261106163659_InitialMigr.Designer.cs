@@ -11,8 +11,8 @@ using agristeam.web.Data;
 namespace agristeam.web.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261106134624_InitialMig")]
-    partial class InitialMig
+    [Migration("20261106163659_InitialMigr")]
+    partial class InitialMigr
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
