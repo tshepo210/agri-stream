@@ -12,6 +12,9 @@ namespace agristeam.function.Data
 {
     internal class StorageDbContext : DbContext
     {
-
+        public StorageDbContext(DbContextOptions<StorageDbContext> options)
+        : base(options)
+        {
+        }
     }
 }

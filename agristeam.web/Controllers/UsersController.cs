@@ -1,5 +1,7 @@
 ﻿using agristeam.web.Models.Entities;
+using agristeam.web.Models;
 using agristeam.web.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace agristeam.web.Controllers
@@ -8,10 +10,10 @@ namespace agristeam.web.Controllers
     {
         private readonly IUserService _userService;
 
-        /*public UsersController(IUserService userService)
+        public UsersController(IUserService userService)
         {
             _userService = userService;
-        }*/
+        }
 
         public async Task<IActionResult> Index()
         {
@@ -21,22 +23,31 @@ namespace agristeam.web.Controllers
 
         public IActionResult Create()
         {
-            return View(new User());
+            return View(new UserCreateModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(User user)
+        public async Task<IActionResult> Create(UserCreateModel model)
         {
             if (ModelState.IsValid)
             {
-                if (string.IsNullOrWhiteSpace(user.RowKey))
-                    user.RowKey = System.Guid.NewGuid().ToString();
+                var user = new User
+                {
+                    FirstName = model.FirstName.Trim(),
+                    LastName = model.LastName.Trim(),
+                    Email = model.Email.Trim(),
+                    Phone = model.Phone.Trim(),
+                    Username = model.Username.Trim()
+                };
+
+                var passwordHasher = new PasswordHasher<User>();
+                user.PasswordHash = passwordHasher.HashPassword(user, model.Password);
 
                 await _userService.CreateAsync(user);
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(model);
         }
     }
 }

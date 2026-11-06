@@ -5,7 +5,7 @@
 namespace agristeam.web.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMig : Migration
+    public partial class InitialMigr : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

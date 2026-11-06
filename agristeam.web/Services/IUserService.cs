@@ -4,7 +4,7 @@ using agristeam.web.Models.Entities;
 
 namespace agristeam.web.Services
 {
-    internal interface IUserService
+    public interface IUserService
     {
         Task<IEnumerable<User>> GetAllAsync();
         Task<User?> GetAsync(string userId);

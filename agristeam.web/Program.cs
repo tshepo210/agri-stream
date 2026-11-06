@@ -1,4 +1,5 @@
 using agristeam.web.Data;
+using agristeam.web.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,11 +9,18 @@ builder.Services.AddControllersWithViews();
 
 // Register ApplicationDbContext for EF Core migrations and runtime
 // Fetch from appsettings.json or fallback to the environment variable
-var connectionString = builder.Configuration.GetConnectionString("ConnectionStrings__DefaultConnection")
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
                        ?? Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
+
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    throw new InvalidOperationException(
+        "The 'DefaultConnection' connection string is not configured.");
+}
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
