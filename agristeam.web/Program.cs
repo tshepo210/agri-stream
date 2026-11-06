@@ -1,9 +1,18 @@
+using agristeam.web.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Register ApplicationDbContext for EF Core migrations and runtime
+// Fetch from appsettings.json or fallback to the environment variable
+var connectionString = builder.Configuration.GetConnectionString("ConnectionStrings__DefaultConnection")
+                       ?? Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
