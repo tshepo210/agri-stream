@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../agristeam.function/agristeam.function.csproj" />
   <Project Path="agristeam.web.csproj" />
 </Solution>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<agristeam.web.Models.Entities.User>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users</h2>
+<p>
+    <a class="btn btn-primary" href="/Users/Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Phone</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@(user.FirstName) @user.LastName</td>
+                <td>@user.Email</td>
+                <td>@user.Username</td>
+                <td>@user.Phone</td>
+                <td>
+                    <a class="btn btn-sm btn-secondary" href="/Users/Edit/@user.Id">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="/Users/Delete/@user.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
