@@ -1,0 +1,10 @@
+agristeam.web/bin/
+agristeam.web/obj/
+agristeam.web/.vs/
+agristeam.Function/bin/
+agristeam.Function/obj/
+agristeam.Function/.vs/
+agristeam.web/appsettings.json
+agristeam.web/local.settings.json
+agristeam.Function/appsettings.json
+agristeam.Function/local.settings.json

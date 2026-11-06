@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "agristeam.function": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7057",
+      "launchBrowser": false
+    }
+  }
+}
